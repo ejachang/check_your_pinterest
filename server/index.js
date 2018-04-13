@@ -9,8 +9,8 @@ let redirectUri = process.env.REDIRECT_URI || 'http://localhost:3000/callback';
 
 
 
-const portNum = process.env.PORT || 3000;
+const portNum = process.env.PORT || 8888;
 app.listen(portNum, function() {
-  console.log('listening on port 3000!');
+  console.log(`listening on port ${portNum}!`);
 });
 

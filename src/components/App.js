@@ -58,7 +58,7 @@ class App extends Component {
       <div className="App">
         <Header />
         {/* <SignIn /> */}
-        <Search />c
+        <Search />
         <DefaultBoard/>
         <Profile />
         <Board />
