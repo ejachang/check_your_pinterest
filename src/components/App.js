@@ -1,22 +1,7 @@
 import React, { Component } from 'react';
-import logo from '../App-Pinterest-icon.png';
-import '../style.css';
 
-class Header extends Component {
-  render() {
-    return (
-      <div className="Header">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">A Pinterest Simulation Prototype</h1>
-        </header>
-        <p className="App-intro">
-          Please sign in
-        </p>
-      </div>
-    );
-  }
-}
+import '../style.css';
+import Header from './Header';
 
 class Profile extends Component {
   render() {
@@ -36,11 +21,42 @@ class Board extends Component {
   }
 }
 
+// class Upload extends Component {
+//   render() {
+//     return (
+//       <div>
+//       </div>
+//     );
+//   }
+// }
+
+// class Aggregate extends Component {
+//   render() {
+//     return (
+//       <div>
+//       </div>
+//     );
+//   }
+// }
+
+class SignIn extends Component {
+  render() {
+    return (
+      <div>
+        <p className="App-intro">
+          Please sign in
+        </p>
+      </div>
+    );
+  }
+}
+
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Header />
+        <SignIn />
         <Profile />
         <Board />
       </div>
