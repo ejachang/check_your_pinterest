@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import logo from './public/App-Pinterest-icon.png';
-import './public/style.css';
+import logo from '../App-Pinterest-icon.png';
+import '../style.css';
 
 class Header extends Component {
   render() {
@@ -18,7 +18,16 @@ class Header extends Component {
   }
 }
 
-class Profile extends Compoent {
+class Profile extends Component {
+  render() {
+    return (
+      <div>
+      </div>
+    );
+  }
+}
+
+class Board extends Component {
   render() {
     return (
       <div>
@@ -32,6 +41,8 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <Profile />
+        <Board />
       </div>
     );
   }
