@@ -2,11 +2,23 @@ import React, { Component } from 'react';
 
 import '../style.css';
 import Header from './Header';
+//import Upload from './Upload';
+//import SignIn from './SignIn';
 
 class Profile extends Component {
   render() {
     return (
       <div>
+      </div>
+    );
+  }
+}
+
+class Search extends Component {
+  render() {
+    return (
+      <div>
+        <p><input type="text"/></p>
       </div>
     );
   }
@@ -21,14 +33,14 @@ class Board extends Component {
   }
 }
 
-// class Upload extends Component {
-//   render() {
-//     return (
-//       <div>
-//       </div>
-//     );
-//   }
-// }
+class DefaultBoard extends Component {
+  render() {
+    return (
+      <div>
+      </div>
+    );
+  }
+}
 
 // class Aggregate extends Component {
 //   render() {
@@ -39,24 +51,15 @@ class Board extends Component {
 //   }
 // }
 
-class SignIn extends Component {
-  render() {
-    return (
-      <div>
-        <p className="App-intro">
-          Please sign in
-        </p>
-      </div>
-    );
-  }
-}
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Header />
-        <SignIn />
+        {/* <SignIn /> */}
+        <Search />c
+        <DefaultBoard/>
         <Profile />
         <Board />
       </div>

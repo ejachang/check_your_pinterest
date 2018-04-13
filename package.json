@@ -2,10 +2,20 @@
   "name": "pinterest_clone",
   "version": "0.1.0",
   "private": true,
+  "devDependencies": {
+    "express": "^4.15.0",
+    "jest": "^22.4.3",
+    "prop-types": "^15.6.1"
+  },
   "dependencies": {
+    "pg": "^7.4.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-promise-middleware": "^5.0.0",
+    "redux-thunk": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
