@@ -41,26 +41,6 @@ app.get('/login', (req, res)=> {
 
 
 const portNum = process.env.PORT || 8888;
-/*
-var path = require('path')
-var fs = require('fs')
-var express = require('express')
-var https = require('https')
-
-var certOptions = {
-  key: fs.readFileSync(path.resolve('build/cert/server.key')),
-  cert: fs.readFileSync(path.resolve('build/cert/server.crt'))
-}
-
-var app = express()
-
-var server = https.createServer(certOptions, app).listen(443)
-*/
-
-// https.createServer(options, (req, res) => {
-//   res.writeHead(200);
-//   res.end('hello world\n');
-// })
 
 https.createServer(certOptions, app).listen(portNum, function() {
   console.log(`listening on port ${portNum}!`);
