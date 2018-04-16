@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import '../style.css';
 import Header from './Header';
 //import Upload from './Upload';
-//import SignIn from './SignIn';
+import SignIn from './SignIn';
 
 class Profile extends Component {
   render() {
@@ -53,12 +53,19 @@ class DefaultBoard extends Component {
 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { user: false };
+  }
+
   render() {
+    let { user } = this.props;
     return (
       <div className="App">
         <Header />
-        {/* <SignIn /> */}
-        <Search />c
+        { user ? <Search />
+          : <SignIn /> 
+        }
         <DefaultBoard/>
         <Profile />
         <Board />
