@@ -5,20 +5,7 @@ import Header from './Header';
 //import Upload from './Upload';
 import Aggregate from './Aggregate';
 import SignIn from './SignIn';
-
-class Profile extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  render() {
-    return (
-      <div>
-        
-      </div>
-    );
-  }
-}
+import Profile from './Profile';
 
 class Search extends Component {
   render() {
@@ -56,7 +43,7 @@ class App extends Component {
   }
 
   render() {
-    let { user } = this.props;
+    let { user } = this.state;
     return (
       <div className="App">
         <Aggregate/>
@@ -64,7 +51,7 @@ class App extends Component {
         { user ? 
           <div>
             <Search /> 
-            <Profile />
+            <Profile user={user}/>
           </div>
           : <SignIn /> 
         }
