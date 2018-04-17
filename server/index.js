@@ -10,7 +10,9 @@ const https = require('https');
 
 const app = express();
 // eslint-disable-next-line
-const redirect_uri = process.env.REDIRECT_URI || 'https://localhost:8888/login';
+const redirect_uri = 
+  process.env.REDIRECT_URI || 
+  'https://localhost:8888/callback';
 
 var certOptions = {
   key: fs.readFileSync(path.resolve('build/cert/server.key')),
@@ -32,7 +34,7 @@ app.get('/login', (req, res)=> {
       // eslint-disable-next-line
       client_id: process.env.APP_ID,
       state: 'user-read-private user-read-pins',
-      scope: 'read_public, write_public, read_relationships, write_relationships',
+      scope: 'read_public',
       // eslint-disable-next-line
       redirect_uri
     })
