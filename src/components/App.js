@@ -7,9 +7,14 @@ import Aggregate from './Aggregate';
 import SignIn from './SignIn';
 
 class Profile extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
   render() {
     return (
       <div>
+        
       </div>
     );
   }
@@ -54,12 +59,16 @@ class App extends Component {
     let { user } = this.props;
     return (
       <div className="App">
+        <Aggregate/>
         <Header />
-        { user ? <Search />
+        { user ? 
+          <div>
+            <Search /> 
+            <Profile />
+          </div>
           : <SignIn /> 
         }
         <DefaultBoard/>
-        <Profile />
         <Board />
       </div>
     );

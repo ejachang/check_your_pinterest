@@ -9,7 +9,7 @@ const fs = require('fs');
 const https = require('https');
 
 const app = express();
-
+// eslint-disable-next-line
 const redirect_uri = process.env.REDIRECT_URI || 'https://localhost:8888/login';
 
 var certOptions = {
@@ -27,10 +27,13 @@ redirect_uri*/
 app.get('/login', (req, res)=> {
   res.redirect('https://api.pinterest.com/oauth/?' + 
     querystring.stringify({
+      // eslint-disable-next-line
       response_type: 'code',
+      // eslint-disable-next-line
       client_id: process.env.APP_ID,
       state: 'user-read-private user-read-pins',
       scope: 'read_public, write_public, read_relationships, write_relationships',
+      // eslint-disable-next-line
       redirect_uri
     })
   );
@@ -44,12 +47,14 @@ app.get('/login', (req, res)=> {
 */
 
 app.get('/callback', function(req, res) {
-  let code = req.query.code || null
+  let code = req.query.code || null;
   let authOptions = {
     url: 'https://api.pinterest.com/v1/oauth/token',
     form: {
       code: code,
+      // eslint-disable-next-line
       redirect_uri,
+      // eslint-disable-next-line
       grant_type: 'authorization_code'
     },
     headers: {
@@ -58,13 +63,15 @@ app.get('/callback', function(req, res) {
       ).toString('base64'))
     },
     json: true
-  }
+  };
   request.post(authOptions, function(error, response, body) {
+    // eslint-disable-next-line
     var access_token = body.access_token
     let uri = process.env.FRONTEND_URI || 'http://localhost:3000';
+    // eslint-disable-next-line
     res.redirect(uri + '?access_token=' + access_token)
-  })
-})
+  });
+});
 
 
 const portNum = process.env.PORT || 8888;
