@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import '../style.css';
 import Header from './Header';
 //import Upload from './Upload';
+import Aggregate from './Aggregate';
 import SignIn from './SignIn';
 
 class Profile extends Component {
@@ -41,15 +42,6 @@ class DefaultBoard extends Component {
     );
   }
 }
-
-// class Aggregate extends Component {
-//   render() {
-//     return (
-//       <div>
-//       </div>
-//     );
-//   }
-// }
 
 
 class App extends Component {
