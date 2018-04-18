@@ -6,16 +6,7 @@ import Header from './Header';
 import Aggregate from './Aggregate';
 import SignIn from './SignIn';
 import Profile from './Profile';
-
-class Search extends Component {
-  render() {
-    return (
-      <div>
-        <p><input type="text"/></p>
-      </div>
-    );
-  }
-}
+import Search from './Search';
 
 class Board extends Component {
   render() {
