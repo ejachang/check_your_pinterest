@@ -51,13 +51,15 @@ app.get('/login', (req, res)=> {
 app.get('/callback', function(req, res) {
   let code = req.query.code || null;
   let authOptions = {
-    url: 'https://api.pinterest.com/v1/oauth/token',
+    url: 'https://api.pinterest.com/v1/oauth/token?',
     form: {
       code: code,
       // eslint-disable-next-line
-      redirect_uri,
+      grant_type: 'authorization_code',
       // eslint-disable-next-line
-      grant_type: 'authorization_code'
+      client_id: process.env.APP_ID,
+      // eslint-disable-next-line
+      client_secret: process.env.APP_SECRET
     },
     headers: {
       'Authorization': 'Basic ' + (new Buffer(
