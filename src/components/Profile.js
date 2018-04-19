@@ -5,7 +5,8 @@ const Profile = (props) => {
   return (
     <div>
       { user ?
-        user : null }
+        user 
+        : null }
     </div>
   );
 };

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import queryString from 'query-string';
 
 import '../style.css';
 import Header from './Header';
@@ -30,11 +32,15 @@ class DefaultBoard extends Component {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { user: false };
   }
-
+  componentDidMount() {
+    let parsed = queryString.parse(window.location.search);
+    if (parsed.access_token !== undefined) {
+      
+    }
+  }
   render() {
-    let { user } = this.state;
+    let { user } = this.props;
     return (
       <div className="App">
         <Aggregate/>
@@ -53,4 +59,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (reduxState) => {
+  return {
+    user: reduxState.PinterestSigninReducer.user
+  };
+};
+
+export default connect(mapStateToProps)(App);
