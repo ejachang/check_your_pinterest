@@ -10,8 +10,9 @@ const PinterestSignInReducer = (state = _defaultProfile, action) => {
   case SIGNED_IN: 
     newProfile.user = action.payload;
     return newProfile;
+  default:
+    return state;
   }
-  return state;
 };
 
-export default PinterestSigninReducer;
+export default PinterestSignInReducer;

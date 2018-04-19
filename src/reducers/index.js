@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { PinterestSignInReducer } from './PinterestSignInReducer';
+import PinterestSignInReducer from './PinterestSignInReducer';
 
 const RootReducer = combineReducers({
   PinterestSignInReducer

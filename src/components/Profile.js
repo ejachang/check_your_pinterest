@@ -1,12 +1,9 @@
 import React from 'react';
 
 const Profile = (props) => {
-  let { user } = this.props;
   return (
     <div>
-      { user ?
-        user 
-        : null }
+      User has signed in
     </div>
   );
 };
