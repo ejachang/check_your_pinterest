@@ -1,4 +1,4 @@
-import { SIGN_IN } from '../actions/signin_actions';
+import { SIGN_IN_WITH_PINTEREST } from '../actions/signin_actions';
 
 const preLoadedState = {};
 
