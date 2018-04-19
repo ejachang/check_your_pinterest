@@ -10,25 +10,8 @@ import Aggregate from './Aggregate';
 import SignIn from './SignIn';
 import Profile from './Profile';
 import Search from './Search';
-
-class Board extends Component {
-  render() {
-    return (
-      <div>
-      </div>
-    );
-  }
-}
-
-class DefaultBoard extends Component {
-  render() {
-    return (
-      <div>
-      </div>
-    );
-  }
-}
-
+import Board from './Board';
+import DefaultBoard from './DefaultBoard';
 
 class App extends Component {
   // constructor(props) {
@@ -49,8 +32,9 @@ class App extends Component {
         <Header />
         { user ? 
           <div>
-            <Search /> 
+            <br></br>
             <Profile user={user}/>
+            <Search /> 
           </div>
           : <SignIn /> 
         }
