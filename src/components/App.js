@@ -30,9 +30,9 @@ class DefaultBoard extends Component {
 
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  // super(props);
+  // }
   componentDidMount() {
     let parsed = queryString.parse(window.location.search);
     if (parsed.access_token !== undefined) {
