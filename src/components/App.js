@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import queryString from 'query-string';
 import { signedIn } from '../actions/signin_actions';
+import { profileInfo } from '../actions/profile_actions';
 
 import '../style.css';
 import Header from './Header';
@@ -22,14 +23,21 @@ class App extends Component {
     if (parsed.access_token !== undefined) {
       this.props.dispatch( signedIn() );
     }
+
+    let fakeProfileData = { 
+      // eslint-disable-next-line
+      data: { first_name: 'User', last_name: 'User'}
+    };
     // eslint-disable-next-line
     fetch('https://api.pinterest.com/v1/me/' + '?access_token=' + parsed.access_token, {
       headers: { 'Authorization': 'Bearer' + parsed.access_token}
     }).then(response => response.json())
-      .then(data => console.log(data));
+      .then(data => this.props.dispatch( profileInfo(data) ))
+      .catch(error => this.props.dispatch( profileInfo(fakeProfileData) ));
   }
   render() {
     let { user } = this.props.PinterestSignInReducer;
+    let {firstName, lastName } = this.props.PinterestProfileReducer;
     // console.log(user);
     return (
       <div className="App">
@@ -38,7 +46,9 @@ class App extends Component {
         { user ? 
           <div>
             <br></br>
-            <Profile user={user}/>
+            <Profile 
+              firstName={firstName}
+              lastName={lastName} />
             <Search /> 
           </div>
           : <SignIn /> 
@@ -52,6 +62,11 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return state;
+  // return {
+  // state
+  // firstName: state.PinterestProfileReducer.firstName,
+  // lastName: state.PinterestProfileReducer.lastName
+  // };
   // user: state.PinterestSigninReducer.user;
 };
 
