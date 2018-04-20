@@ -22,7 +22,11 @@ class App extends Component {
     if (parsed.access_token !== undefined) {
       this.props.dispatch( signedIn() );
     }
-
+    // eslint-disable-next-line
+    fetch('https://api.pinterest.com/v1/me/' + '?access_token=' + parsed.access_token, {
+      headers: { 'Authorization': 'Bearer' + parsed.access_token}
+    }).then(response => response.json())
+      .then(data => console.log(data));
   }
   render() {
     let { user } = this.props.PinterestSignInReducer;
