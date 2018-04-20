@@ -22,6 +22,7 @@ class App extends Component {
     if (parsed.access_token !== undefined) {
       this.props.dispatch( signedIn() );
     }
+
   }
   render() {
     let { user } = this.props.PinterestSignInReducer;
