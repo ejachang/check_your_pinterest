@@ -1,9 +1,10 @@
 import React from 'react';
 
 const Profile = (props) => {
+  // debugger;
   return (
     <div>
-      User has signed in
+      {props.name.username} has signed in
     </div>
   );
 };
