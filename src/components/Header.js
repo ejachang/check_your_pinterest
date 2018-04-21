@@ -7,7 +7,8 @@ class Header extends Component {
       <div className="Header">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">A Pinterest Simulation Prototype</h1>
+          <h1 className="App-title">Check Your Pinterest</h1>
+          <h4 className="App-sub">A Pinterest Simulation Prototype</h4>
         </header>
       </div>
     );
