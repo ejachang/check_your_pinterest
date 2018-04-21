@@ -4,6 +4,7 @@ import queryString from 'query-string';
 import { signedIn } from '../actions/signin_actions';
 import { profileInfo } from '../actions/profile_actions';
 import { defaultBoardData } from '../actions/default_board_actions';
+// import PropTypes from 'prop-types';
 
 import '../style.css';
 import Header from './Header';
@@ -54,7 +55,7 @@ class App extends Component {
           <div>
             <br></br>
             <Profile 
-              name={username} />
+              firstname={username} />
             <Search /> 
           </div>
           : <SignIn /> 
@@ -68,15 +69,22 @@ class App extends Component {
 //turning state to props on the react comp
 const mapStateToProps = (state) => {
   // debugger;
+  // console.log(state);
   return {
-    username: state.username,
-    user: state.user,
+    username: state.username.firstname,
+    user: state.user.loggedin,
     defaultboard: state.defaultboard
   };
 };
 
 // const mapDispatchToProps = (dispatch) => {
 //   return signedIn;
+// };
+
+// App.propTypes = {
+  // username: PropTypes.string,
+  // user: PropTypes.boolean,
+  // defaultboard: PropTypes.object.isRequired
 // };
 
 export default connect(mapStateToProps)(App);
