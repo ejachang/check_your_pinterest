@@ -17,28 +17,29 @@ import DefaultBoard from './DefaultBoard';
 class App extends Component {
   // constructor(props) {
   //   super(props);
+  //   this.state = {};
   // }
   componentDidMount() {
     let parsed = queryString.parse(window.location.search);
     if (parsed.access_token !== undefined) {
-      this.props.dispatch( signedIn() );
+      // debugger;
+      this.props.dispatch(signedIn());
+      // console.log('user should be true', this.props);
     }
-
-    let fakeProfileData = { 
-      // eslint-disable-next-line
-      data: { first_name: 'User', last_name: 'User'}
-    };
     // eslint-disable-next-line
-    fetch('https://api.pinterest.com/v1/me/' + '?access_token=' + parsed.access_token, {
-      headers: { 'Authorization': 'Bearer' + parsed.access_token}
-    }).then(response => response.json())
-      .then(data => this.props.dispatch( profileInfo(data) ))
-      .catch(error => this.props.dispatch( profileInfo(fakeProfileData) ));
+    let fakeProfileData = { data: { first_name: 'User'} };
+    this.props.dispatch( profileInfo(fakeProfileData) );
+    // eslint-disable-next-line
+    // fetch('https://api.pinterest.com/v1/me/' + '?access_token=' + parsed.access_token, {
+    //   // headers: { 'Authorization': 'Bearer' + parsed.access_token}
+    // }).then(response => response.json())
+    //   .then(data => this.props.dispatch( profileInfo(data) ))
+    //   .catch(error => this.props.dispatch( profileInfo(fakeProfileData) ));
   }
   render() {
-    let { user } = this.props.PinterestSignInReducer;
-    let {firstName, lastName } = this.props.PinterestProfileReducer;
-    // console.log(user);
+    let { user } = this.props;
+    let { username } = this.props;
+    console.log(username, this.props);
     return (
       <div className="App">
         <Aggregate/>
@@ -47,8 +48,7 @@ class App extends Component {
           <div>
             <br></br>
             <Profile 
-              firstName={firstName}
-              lastName={lastName} />
+              name={username} />
             <Search /> 
           </div>
           : <SignIn /> 
@@ -59,15 +59,17 @@ class App extends Component {
     );
   }
 }
-
+//turning state to props on the react comp
 const mapStateToProps = (state) => {
-  return state;
-  // return {
-  // state
-  // firstName: state.PinterestProfileReducer.firstName,
-  // lastName: state.PinterestProfileReducer.lastName
-  // };
-  // user: state.PinterestSigninReducer.user;
+  // debugger;
+  return {
+    username: state.username,
+    user: state.user
+  };
 };
+
+// const mapDispatchToProps = (dispatch) => {
+//   return signedIn;
+// };
 
 export default connect(mapStateToProps)(App);

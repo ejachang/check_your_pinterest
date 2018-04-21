@@ -8,7 +8,7 @@ const PinterestSignInReducer = (state = _defaultProfile, action) => {
   let newProfile = Object.assign({}, state);
   switch (action.type) {
   case SIGNED_IN: 
-    newProfile.user = action.payload;
+    newProfile.user = true;
     return newProfile;
   default:
     return state;
