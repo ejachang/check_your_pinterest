@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Profile = (props) => {
-  console.log('profile', props);
   // debugger;
   return (
     <div>
