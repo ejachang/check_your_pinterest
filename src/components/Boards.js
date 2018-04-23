@@ -9,11 +9,11 @@ class Boards extends Component {
     return (
       <div>
         hello
-        {defaultboards.boards.data.map((boarddata) => {
+        {/* {defaultboards.boards.data.map((boarddata) => {
           return <Board 
             defaultboards = {defaultboards}/>;
         })
-        }
+        } */}
       </div>
     );
   }
