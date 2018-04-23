@@ -39,3 +39,36 @@ body {
   height: 5%;
   width: 5%;
 }
+
+.boardsgrid {
+  margin-bottom: 24px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+element.style {
+  width: 301px;
+  height: 200px;
+}
+
+#boardwrapper {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.GridItems.centeredWithinWrapper {
+  margin-bottom: 14px;
+  padding-bottom: 4px;
+}
+
+.GridItems {
+  margin: 0 auto 14px;
+  position: relative;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex {
+  display: flex;
+}

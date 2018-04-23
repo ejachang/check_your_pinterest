@@ -7,13 +7,14 @@ class Boards extends Component {
     let { defaultboards } = this.props;
     // debugger;
     return (
-      <div>
-        {defaultboards.boards.data.map((boarddata) => {
-          return <Board 
-            singleboard = {boarddata}
-            key={boarddata.id}/>;
-        })
-        }
+      <div className="boardsgrid">
+        <div className="GridItems flex flex-wrap centeredWithinWrapper">
+          {defaultboards.boards.data.map((boarddata) => {
+            return <Board 
+              singleboard = {boarddata}
+              key={boarddata.id}/>;
+          })}
+        </div>
       </div>
     );
   }
