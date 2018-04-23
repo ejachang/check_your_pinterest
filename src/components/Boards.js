@@ -8,12 +8,12 @@ class Boards extends Component {
     // debugger;
     return (
       <div>
-        hello
-        {/* {defaultboards.boards.data.map((boarddata) => {
+        {defaultboards.boards.data.map((boarddata) => {
           return <Board 
-            defaultboards = {defaultboards}/>;
+            singleboard = {boarddata}
+            key={boarddata.id}/>;
         })
-        } */}
+        }
       </div>
     );
   }

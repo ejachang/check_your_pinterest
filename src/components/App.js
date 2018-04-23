@@ -44,7 +44,7 @@ class App extends Component {
 
   }
   render() {
-    let { user, username, defaultboards, boardsloaded } = this.props;
+    let { user, username, defaultboards } = this.props;
     // let { username } = this.props;
     console.log(this.props);
     return (
@@ -60,7 +60,7 @@ class App extends Component {
           </div>
           : <SignIn /> 
         }
-        { boardsloaded ? 
+        { defaultboards.boardsloaded ? 
           <Boards
             defaultboards={defaultboards}/>
           : 'Boards are loading...'}
