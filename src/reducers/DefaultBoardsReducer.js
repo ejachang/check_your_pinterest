@@ -1,4 +1,4 @@
-import { DEFAULT_BOARD } from '../actions/default_board_actions';
+import { BOARDS } from '../actions/boards_actions';
 /*
 root:{} 1 item
 data:[] 2 items
@@ -26,20 +26,18 @@ collaborators:0
 followers:40
 name:bsd_girl
 */
-let _defaultBoard = Object.freeze({
-  url: null,
-  image: null
+let _defaultBoards = Object.freeze({
+  boards: {}
 });
 
-const DefaultBoardReducer = (state = _defaultBoard, action) => {
-  let newDefaultBoard = Object.assign({}, _defaultBoard);
+const DefaultBoardReducer = (state = _defaultBoards, action) => {
+  let newDefaultBoards = Object.assign({}, _defaultBoards);
   switch (action.type) {
-  case DEFAULT_BOARD:
-    newDefaultBoard.url = action.payload.root.data[0].url;
-    newDefaultBoard.image = action.payload.root.data[0].image;
+  case BOARDS:
+    return newDefaultBoards.boards = action.payload;
     break;
   default: 
-    return _defaultBoard;
+    return _defaultBoards;
   }
 };
 

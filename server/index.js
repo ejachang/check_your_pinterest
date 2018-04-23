@@ -26,6 +26,23 @@ state	A value you define. This can be used to make sure that the redirect back t
 scope	A comma-separated list of permission scopes you want to ask your user for (e.g., read_public).
 redirect_uri*/
 
+/*
+ fetch('https://api.pinterest.com/v1/me/boards/?access_token=' + parsed.access_token + '&fields=image, url, name', 
+      { headers: { 'Authorization': 'Bearer' + parsed.access_token}
+      }).then(response => response.json())
+      .then(data => this.props.dispatch(boardsData(data)))
+      // .then(data => this.props.dispatch( defaultBoardData(data) ))
+      .catch(error => console.log(error) );
+
+request
+  .get('http://mysite.com/doodle.png')
+  .on('error', function(err) {
+    console.log(err)
+  })
+  .pipe(fs.createWriteStream('doodle.png'))
+*/
+
+
 app.get('/login', (req, res)=> {
   res.redirect('https://api.pinterest.com/oauth/?' + 
     querystring.stringify({

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class DefaultBoard extends Component {
+class Boards extends Component {
   render() {
     return (
       <div>
@@ -9,4 +9,4 @@ class DefaultBoard extends Component {
   }
 }
 
-export default DefaultBoard;
+export default Boards;
