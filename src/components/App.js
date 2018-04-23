@@ -5,7 +5,7 @@ import { signedIn } from '../actions/signin_actions';
 import { profileInfo } from '../actions/profile_actions';
 import { boardsData } from '../actions/boards_actions';
 // import PropTypes from 'prop-types';
-
+import { fakeSuggestedBoard, fakeProfileData, substituteboards } from '../fakeData';
 import '../style.css';
 import Header from './Header';
 //import Upload from './Upload';
@@ -15,15 +15,6 @@ import Profile from './Profile';
 import Search from './Search';
 import Boards from './Boards';
 // import Board from './Board';
-// eslint-disable-next-line
-let fakeProfileData = { data: { first_name: 'User'} };
-let fakeSuggestedBoard = {
-  0: {
-    id: '307441180751852605',
-    name: '50s',
-    url: 'https://www.pinterest.com/bumper0cars/50s/'
-  },
-};
 
 class App extends Component {
   // constructor(props) {
@@ -38,22 +29,22 @@ class App extends Component {
       // console.log('user should be true', this.props);
     }
     this.props.dispatch(profileInfo(fakeProfileData));
+    this.props.dispatch(boardsData(substituteboards));
     // eslint-disable-next-line
     // fetch('https://api.pinterest.com/v1/me/' + '?access_token=' + parsed.access_token, {
     //   // headers: { 'Authorization': 'Bearer' + parsed.access_token}
     // }).then(response => response.json())
     //   .then(data => this.props.dispatch( profileInfo(data) ))
     //   .catch(error => this.props.dispatch( profileInfo(fakeProfileData) ));
-    fetch('https://api.pinterest.com/v1/me/boards/?access_token=' + parsed.access_token + '&fields=image, url, name', 
-      { headers: { 'Authorization': 'Bearer' + parsed.access_token}
-      }).then(response => response.json())
-      .then(data => this.props.dispatch(boardsData(data)))
-      // .then(data => this.props.dispatch( defaultBoardData(data) ))
-      .catch(error => console.log(error) );
+    // fetch('https://api.pinterest.com/v1/me/boards/?access_token=' + parsed.access_token + '&fields=image, url, name', 
+    //   { headers: { 'Authorization': 'Bearer' + parsed.access_token}
+    //   }).then(response => response.json())
+    //   .then(data => this.props.dispatch(boardsData(data)))
+    //   .catch(error => console.log(error) );
 
   }
   render() {
-    let { user, username } = this.props;
+    let { user, username, defaultboards, boardsloaded } = this.props;
     // let { username } = this.props;
     console.log(this.props);
     return (
@@ -69,7 +60,10 @@ class App extends Component {
           </div>
           : <SignIn /> 
         }
-        <Boards/>
+        { boardsloaded ? 
+          <Boards
+            defaultboards={defaultboards}/>
+          : 'Boards are loading...'}
         {/* <Board /> */}
       </div>
     );

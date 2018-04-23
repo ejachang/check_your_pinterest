@@ -27,15 +27,17 @@ followers:40
 name:bsd_girl
 */
 let _defaultBoards = Object.freeze({
-  boards: {}
+  boards: { data: {} },
+  boardsloaded: false
 });
 
 const DefaultBoardReducer = (state = _defaultBoards, action) => {
   let newDefaultBoards = Object.assign({}, _defaultBoards);
   switch (action.type) {
   case BOARDS:
-    return newDefaultBoards.boards = action.payload;
-    break;
+    newDefaultBoards.boards = action.payload;
+    newDefaultBoards.boardsloaded = true;
+    return newDefaultBoards;
   default: 
     return _defaultBoards;
   }

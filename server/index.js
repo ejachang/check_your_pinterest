@@ -27,13 +27,6 @@ scope	A comma-separated list of permission scopes you want to ask your user for 
 redirect_uri*/
 
 /*
- fetch('https://api.pinterest.com/v1/me/boards/?access_token=' + parsed.access_token + '&fields=image, url, name', 
-      { headers: { 'Authorization': 'Bearer' + parsed.access_token}
-      }).then(response => response.json())
-      .then(data => this.props.dispatch(boardsData(data)))
-      // .then(data => this.props.dispatch( defaultBoardData(data) ))
-      .catch(error => console.log(error) );
-
 request
   .get('http://mysite.com/doodle.png')
   .on('error', function(err) {
