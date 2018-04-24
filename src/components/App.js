@@ -4,7 +4,6 @@ import queryString from 'query-string';
 import { signedIn } from '../actions/signin_actions';
 import { profileInfo } from '../actions/profile_actions';
 import { boardsData } from '../actions/boards_actions';
-// import { browserRouter } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import { fakeSuggestedBoard, fakeProfileData, substituteboards } from '../fakeData';
 import '../style.css';
