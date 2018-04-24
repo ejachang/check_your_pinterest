@@ -4,6 +4,7 @@ import queryString from 'query-string';
 import { signedIn } from '../actions/signin_actions';
 import { profileInfo } from '../actions/profile_actions';
 import { boardsData } from '../actions/boards_actions';
+// import { browserRouter } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import { fakeSuggestedBoard, fakeProfileData, substituteboards } from '../fakeData';
 import '../style.css';
@@ -12,7 +13,6 @@ import Header from './Header';
 import Aggregate from './Aggregate';
 import SignIn from './SignIn';
 import Profile from './Profile';
-import Search from './Search';
 import Boards from './Boards';
 // import Board from './Board';
 
@@ -56,7 +56,6 @@ class App extends Component {
             <br></br>
             <Profile 
               firstname={username} />
-            <Search /> 
           </div>
           : <SignIn /> 
         }
