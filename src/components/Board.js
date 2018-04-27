@@ -7,7 +7,7 @@ const Board = (props) => {
       <img 
         id="singleboardimage" 
         src={props.singleboard.image['60x60']['url']}
-        // onClick={}
+        onClick={() => { window.location = props.singleboard.url; }}
       />
     </div>
   );

@@ -29,17 +29,6 @@ class App extends Component {
     }
     this.props.dispatch(profileInfo(fakeProfileData));
     this.props.dispatch(boardsData(substituteboards));
-    // eslint-disable-next-line
-    // fetch('https://api.pinterest.com/v1/me/' + '?access_token=' + parsed.access_token, {
-    //   // headers: { 'Authorization': 'Bearer' + parsed.access_token}
-    // }).then(response => response.json())
-    //   .then(data => this.props.dispatch( profileInfo(data) ))
-    //   .catch(error => this.props.dispatch( profileInfo(fakeProfileData) ));
-    // fetch('https://api.pinterest.com/v1/me/boards/?access_token=' + parsed.access_token + '&fields=image, url, name', 
-    //   { headers: { 'Authorization': 'Bearer' + parsed.access_token}
-    //   }).then(response => response.json())
-    //   .then(data => this.props.dispatch(boardsData(data)))
-    //   .catch(error => console.log(error) );
 
   }
   render() {

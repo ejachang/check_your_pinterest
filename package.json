@@ -8,6 +8,7 @@
     "prop-types": "^15.6.1"
   },
   "dependencies": {
+    "node-fetch": "^2.1.2",
     "nodemon": "^1.17.3",
     "pg": "^7.4.1",
     "querystring": "^0.2.0",

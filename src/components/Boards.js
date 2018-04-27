@@ -12,12 +12,14 @@ class Boards extends Component {
       enteredtext: ''
     };
     this.handleSearchChange = this.handleSearchChange.bind(this);
+    // this.handlePinClick = this.handlePinClick.bind(this);
   }
   handleSearchChange(e) {
     this.setState({
       enteredtext: e.target.value
     });
   }
+
   render() {
     // console.log('board props', this.props);
     let { defaultboards } = this.props;
