@@ -80,14 +80,14 @@ request
     // eslint-disable-next-line
     let access_token = body.access_token
     let uri = process.env.FRONTEND_URI || 'http://localhost:3000';  
-    /*
+    
     let options = {
       method: 'GET',
       headers: { headers: { 'Authorization': 'Bearer' + access_token}},
       body: null,
       redirect: process.env.FRONTEND_URI || 'http://localhost:3000'
     };
-
+    /*
 {
     // These properties are part of the Fetch Standard
     method: 'GET',
@@ -102,13 +102,14 @@ request
     size: 0,            // maximum response body size in bytes. 0 to disable
     agent: null         // http(s).Agent instance, allows custom proxy, certificate etc.
 }
-    fetch('https://api.pinterest.com/v1/me/boards/?access_token=' + access_token + '&fields=image, url, name', 
-      options)
-      .then(response => response.json())
-      .then(data => console.log(data))
-      // .then(data => this.props.dispatch(boardsData(data)))
-      .catch(error => console.log(error) );
- */     
+*/     
+    // fetch('https://api.pinterest.com/v1/me/boards/?access_token=' + access_token + '&fields=image, url, name', 
+    //   options)
+    //   .then(response => response.json())
+    //   .then(data => console.log(data))
+    //   // .then(data => this.props.dispatch(boardsData(data)))
+    //   .catch(error => console.log(error) );
+
     
     // eslint-disable-next-line
     res.redirect(uri + '?access_token=' + access_token)
