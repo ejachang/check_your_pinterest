@@ -68,6 +68,7 @@ app.get('/callback', function(req, res) {
     },
     json: true
   };
+
   /*
 request
   .get('http://mysite.com/doodle.png')
@@ -102,6 +103,7 @@ request
     size: 0,            // maximum response body size in bytes. 0 to disable
     agent: null         // http(s).Agent instance, allows custom proxy, certificate etc.
 }
+//fetch boards info
     fetch('https://api.pinterest.com/v1/me/boards/?access_token=' + access_token + '&fields=image, url, name', 
       options)
       .then(response => response.json())
@@ -115,7 +117,14 @@ request
   });
 });
 
+app.get('/:board/:pins', function(req, res) {
+  //get specific board info
+}); 
 
+app.get('/:boards/:pin', function(req, res) {
+  //get specific pin info
+  //view specific pin
+}); 
 
 
 const portNum = process.env.PORT || 8888;
