@@ -22,7 +22,7 @@ class App extends Component {
   // }
   componentDidMount() {
     let parsed = queryString.parse(window.location.search);
-    if (parsed.access_token !== undefined) {
+    if (parsed.access_token !== 'undefined' || parsed.access_token !== undefined) {
       // debugger;
       this.props.dispatch(signedIn());
       // console.log('user should be true', this.props);
