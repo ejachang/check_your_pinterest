@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link, Route, Redirect } from 'react-router-dom';
-// <Link to='/boards'></Link>
+
 const Board = (props) => {
   return (
     <div id="boardwrapper">
-      <h5 id="singleboardname">{props.singleboard.name}</h5>
+      <Link to={'/boards/' + props.singleboard.name} style={{ textDecoration: 'none' }}>
+        <h5 id="singleboardname"><a>{props.singleboard.name}</a></h5>
+      </Link>
       <img 
         id="singleboardimage" 
         src={props.singleboard.image['60x60']['url']}
