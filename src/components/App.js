@@ -29,7 +29,7 @@ class App extends Component {
     }
     this.props.dispatch(profileInfo(fakeProfileData));
     this.props.dispatch(boardsData(substituteboards));
-
+    
   }
   render() {
     let { user, username, defaultboards } = this.props;
@@ -47,6 +47,8 @@ class App extends Component {
           </div>
           : <SignIn /> 
         }
+
+
         { defaultboards.boardsloaded ? 
           <Boards
             defaultboards={defaultboards}/>
