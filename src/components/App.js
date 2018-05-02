@@ -3,19 +3,18 @@ import { connect } from 'react-redux';
 import queryString from 'query-string';
 import { signedIn } from '../actions/signin_actions';
 import { profileInfo } from '../actions/profile_actions';
-import { defaultBoardData } from '../actions/default_board_actions';
-
+import { boardsData } from '../actions/boards_actions';
+// import PropTypes from 'prop-types';
+import { fakeSuggestedBoard, fakeProfileData, substituteboards } from '../fakeData';
 import '../style.css';
 import Header from './Header';
 //import Upload from './Upload';
 import Aggregate from './Aggregate';
 import SignIn from './SignIn';
 import Profile from './Profile';
-import Search from './Search';
-import Board from './Board';
-import DefaultBoard from './DefaultBoard';
-// eslint-disable-next-line
-let fakeProfileData = { data: { first_name: 'User'} };
+import Boards from './Boards';
+// import Board from './Board';
+
 class App extends Component {
   // constructor(props) {
   //   super(props);
@@ -23,29 +22,19 @@ class App extends Component {
   // }
   componentDidMount() {
     let parsed = queryString.parse(window.location.search);
-    if (parsed.access_token !== undefined) {
+    if (parsed.access_token !== 'undefined' || parsed.access_token !== undefined) {
       // debugger;
       this.props.dispatch(signedIn());
       // console.log('user should be true', this.props);
     }
-    this.props.dispatch( profileInfo(fakeProfileData) );
-    // eslint-disable-next-line
-    // fetch('https://api.pinterest.com/v1/me/' + '?access_token=' + parsed.access_token, {
-    //   // headers: { 'Authorization': 'Bearer' + parsed.access_token}
-    // }).then(response => response.json())
-    //   .then(data => this.props.dispatch( profileInfo(data) ))
-    //   .catch(error => this.props.dispatch( profileInfo(fakeProfileData) ));
-    fetch('https://api.pinterest.com/v1/me/boards/suggested/?access_token=' + parsed.access_token, {
-      headers: { 'Authorization': 'Bearer' + parsed.access_token}
-    }).then(response => response.json())
-      .then(data => this.props.dispatch( defaultBoardData(data) ))
-      .catch(error => console.log(error) );
-
-
+    this.props.dispatch(profileInfo(fakeProfileData));
+    this.props.dispatch(boardsData(substituteboards));
+    
   }
   render() {
-    let { user } = this.props;
-    let { username } = this.props;
+    let { user, username, defaultboards } = this.props;
+    // let { username } = this.props;
+    console.log(this.props);
     return (
       <div className="App">
         <Aggregate/>
@@ -54,13 +43,17 @@ class App extends Component {
           <div>
             <br></br>
             <Profile 
-              name={username} />
-            <Search /> 
+              firstname={username} />
           </div>
           : <SignIn /> 
         }
-        <DefaultBoard/>
-        <Board />
+
+
+        { defaultboards.boardsloaded ? 
+          <Boards
+            defaultboards={defaultboards}/>
+          : 'Boards are loading...'}
+        {/* <Board /> */}
       </div>
     );
   }
@@ -68,15 +61,22 @@ class App extends Component {
 //turning state to props on the react comp
 const mapStateToProps = (state) => {
   // debugger;
+  // console.log(state);
   return {
-    username: state.username,
-    user: state.user,
-    defaultboard: state.defaultboard
+    username: state.username.firstname,
+    user: state.user.loggedin,
+    defaultboards: state.defaultboards
   };
 };
 
 // const mapDispatchToProps = (dispatch) => {
 //   return signedIn;
+// };
+
+// App.propTypes = {
+  // username: PropTypes.string,
+  // user: PropTypes.boolean,
+  // defaultboard: PropTypes.object.isRequired
 // };
 
 export default connect(mapStateToProps)(App);

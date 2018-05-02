@@ -4,7 +4,7 @@ class Search extends Component {
   render() {
     return (
       <div>
-        <p><input type="text"/></p>
+        
       </div>
     );
   }

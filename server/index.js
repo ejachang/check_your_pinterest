@@ -1,7 +1,7 @@
 const express = require('express');
 const request = require('request');
 const querystring = require('querystring');
-
+const fetch = require('node-fetch');
 //Make sure you do this only for your local environment. Do not use this in production.
 
 const path = require('path');
@@ -19,13 +19,6 @@ var certOptions = {
   cert: fs.readFileSync(path.resolve('build/cert/server.crt'))
 };
 
-/*
-response_type	Must take the value code.
-client_id	Your app ID. You can get this ID from your app page.
-state	A value you define. This can be used to make sure that the redirect back to your site or app wasn’t spoofed.
-scope	A comma-separated list of permission scopes you want to ask your user for (e.g., read_public).
-redirect_uri*/
-
 app.get('/login', (req, res)=> {
   res.redirect('https://api.pinterest.com/oauth/?' + 
     querystring.stringify({
@@ -40,13 +33,6 @@ app.get('/login', (req, res)=> {
     })
   );
 }); 
-
-/*
-  grant_type=authorization_code&
-  client_id=12345&
-  client_secret=6789abcd&
-  code=xyz1010
-*/
 
 app.get('/callback', function(req, res) {
   let code = req.query.code || null;
@@ -68,17 +54,89 @@ app.get('/callback', function(req, res) {
     },
     json: true
   };
+  
   request.post(authOptions, function(error, response, body) {
     // eslint-disable-next-line
-    var access_token = body.access_token
-    let uri = process.env.FRONTEND_URI || 'http://localhost:3000';
+    let access_token = body.access_token
+    let uri = process.env.FRONTEND_URI || 'http://localhost:3000';  
+    /*
+    let options = {
+      method: 'GET',
+      headers: { headers: { 'Authorization': 'Bearer' + access_token}},
+      body: null,
+      redirect: process.env.FRONTEND_URI || 'http://localhost:3000'
+    };
+
+//fetch boards info
+    fetch('https://api.pinterest.com/v1/me/boards/?access_token=' + access_token + '&fields=image, url, name', 
+      options)
+      .then(response => response.json())
+      .then(data => console.log(data))
+      // .then(data => this.props.dispatch(boardsData(data)))
+      .catch(error => console.log(error) );
+ */     
+    
     // eslint-disable-next-line
     res.redirect(uri + '?access_token=' + access_token)
   });
 });
 
+app.get('/boards/:board', function(req, res) {
+  //get specific board info
+  let board = req.params.board;
+  let uri = 'http://localhost:3000';
+  //fetch boards info
+  // eslint-disable-next-line
+  let app_token;
+  // eslint-disable-next-line
+  let access_token = process.env.APP_TOKEN || app_token
+  let options = {
+    method: 'GET',
+    // eslint-disable-next-line
+    headers: { headers: { 'Authorization': 'Bearer' + access_token}},
+    body: null,
+    redirect: process.env.FRONTEND_URI || ('http://localhost:3000/boards/' + board)
+  };
+  // eslint-disable-next-line
+  fetch('https://api.pinterest.com/v1/boards/' + board + '/pins/?access_token=' + access_token + '&fields=id%2Clink%2Cnote%2Curl%2Cimage')
+    .then(response => response.json())
+    .then(data => console.log(data))
+    // .then(data => this.props.dispatch(boardsData(data)))
+    .catch(error => console.log(error) );  
+    
+  // eslint-disable-next-line
+    res.redirect(uri + '/boards/' + board);
 
+}); 
 
+app.get('/:board/pin/:pin', function(req, res) {
+  //get specific pin info
+  //view specific pin
+  let board = req.params.board;
+  let pin = req.params.pin;
+  let uri = 'http://localhost:3000';
+  //fetch boards info
+  // eslint-disable-next-line
+ let app_token;
+  // eslint-disable-next-line
+  let access_token = process.env.APP_TOKEN || app_token
+  let options = {
+    method: 'GET',
+    // eslint-disable-next-line
+    headers: { headers: { 'Authorization': 'Bearer' + access_token}},
+    body: null,
+    redirect: process.env.FRONTEND_URI || ('http://localhost:3000/boards/' + board) 
+  };
+  // eslint-disable-next-line
+  fetch('https://api.pinterest.com/v1/boards/' + board + '/pins/?access_token=' + access_token + '&fields=id%2Clink%2Cnote%2Curl%2Cimage')
+    .then(response => response.json())
+    .then(data => console.log(data))
+    // .then(data => this.props.dispatch(boardsData(data)))
+    .catch(error => console.log(error) );  
+   
+  // eslint-disable-next-line
+     res.redirect(uri + '/boards')
+}); 
 
 
 const portNum = process.env.PORT || 8888;

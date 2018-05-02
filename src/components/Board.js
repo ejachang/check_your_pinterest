@@ -1,12 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Board extends Component {
-  render() {
-    return (
-      <div>
-      </div>
-    );
-  }
-}
+const Board = (props) => {
+  return (
+    <div id="boardwrapper">
+      <h5 id="singleboardname">{props.singleboard.name}</h5>
+      <img 
+        id="singleboardimage" 
+        src={props.singleboard.image['60x60']['url']}
+        onClick={() => { window.location = props.singleboard.url; }}
+      />
+    </div>
+  );
+};
 
 export default Board;
