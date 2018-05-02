@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link, Route, Redirect } from 'react-router-dom';
 import Board from './Board';
 // import Search from './Search';
 /* Stateless comp doesn't really need to know the Redux state . Redux state is usually a bit higher level

@@ -1,5 +1,6 @@
 import React from 'react';
-
+import { Link, Route, Redirect } from 'react-router-dom';
+// <Link to='/boards'></Link>
 const Board = (props) => {
   return (
     <div id="boardwrapper">

@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import queryString from 'query-string';
+import { Link, Route, Redirect } from 'react-router-dom';
+// import PropTypes from 'prop-types';
+
 import { signedIn } from '../actions/signin_actions';
 import { profileInfo } from '../actions/profile_actions';
 import { boardsData } from '../actions/boards_actions';
-// import PropTypes from 'prop-types';
+
+
 import { fakeSuggestedBoard, fakeProfileData, substituteboards } from '../fakeData';
 import '../style.css';
 import Header from './Header';
@@ -14,6 +18,7 @@ import SignIn from './SignIn';
 import Profile from './Profile';
 import Boards from './Boards';
 // import Board from './Board';
+
 
 class App extends Component {
   // constructor(props) {
@@ -47,11 +52,8 @@ class App extends Component {
           </div>
           : <SignIn /> 
         }
-
-
         { defaultboards.boardsloaded ? 
-          <Boards
-            defaultboards={defaultboards}/>
+          <Boards defaultboards={defaultboards}/>
           : 'Boards are loading...'}
         {/* <Board /> */}
       </div>
