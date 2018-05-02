@@ -129,12 +129,12 @@ app.get('/:board/pin/:pin', function(req, res) {
   };
   // eslint-disable-next-line
   fetch('https://api.pinterest.com/v1/boards/' + board + '/pins/?access_token=' + access_token + '&fields=id%2Clink%2Cnote%2Curl%2Cimage')
-  .then(response => response.json())
-   .then(data => console.log(data))
-   // .then(data => this.props.dispatch(boardsData(data)))
-   .catch(error => console.log(error) );  
+    .then(response => response.json())
+    .then(data => console.log(data))
+    // .then(data => this.props.dispatch(boardsData(data)))
+    .catch(error => console.log(error) );  
    
-   // eslint-disable-next-line
+  // eslint-disable-next-line
      res.redirect(uri + '/boards')
 }); 
 
