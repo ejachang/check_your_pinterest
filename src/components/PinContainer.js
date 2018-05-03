@@ -1,13 +1,13 @@
 import React from 'react';
 
 
-const Pin = (props) => {
+const PinContainer = (props) => {
   return (
     <div>
-
+      
     </div>
   );
 
 };
 
-export default Pin;
+export default PinContainer;
