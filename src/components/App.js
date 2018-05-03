@@ -16,7 +16,7 @@ import Header from './Header';
 import Aggregate from './Aggregate';
 import SignIn from './SignIn';
 import Profile from './Profile';
-import Boards from './Boards';
+import BoardsContainer from './BoardsContainer';
 // import Board from './Board';
 
 
@@ -53,7 +53,7 @@ class App extends Component {
           : <SignIn /> 
         }
         { defaultboards.boardsloaded ? 
-          <Boards defaultboards={defaultboards}/>
+          <BoardsContainer defaultboards={defaultboards}/>
           : 'Boards are loading...'}
         {/* <Board /> */}
       </div>

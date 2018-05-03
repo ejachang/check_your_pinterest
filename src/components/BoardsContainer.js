@@ -6,7 +6,7 @@ import Board from './Board';
 If a component is only using a bit of state for that component specifically, don't really need Redux state,
 just React state. But with data that needs to be shared between all comp, Redux is good for that.
 */
-class Boards extends Component {
+class BoardsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -55,4 +55,4 @@ class Boards extends Component {
   }
 }
 
-export default Boards;
+export default BoardsContainer;
