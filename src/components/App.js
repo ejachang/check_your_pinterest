@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import queryString from 'query-string';
-import { Link, Route, Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 
 import { signedIn } from '../actions/signin_actions';
@@ -9,16 +9,14 @@ import { profileInfo } from '../actions/profile_actions';
 import { boardsData } from '../actions/boards_actions';
 
 
-import { fakeSuggestedBoard, fakeProfileData, substituteboards } from '../fakeData';
+import { fakeSuggestedBoard, fakeProfileData } from '../fakeData';
 import '../style.css';
 import Header from './Header';
 //import Upload from './Upload';
 import Aggregate from './Aggregate';
 import SignIn from './SignIn';
 import Profile from './Profile';
-import BoardsContainer from './BoardsContainer';
-// import Board from './Board';
-
+import Boards from './Boards';
 
 class App extends Component {
   // constructor(props) {
@@ -33,13 +31,12 @@ class App extends Component {
       // console.log('user should be true', this.props);
     }
     this.props.dispatch(profileInfo(fakeProfileData));
-    this.props.dispatch(boardsData(substituteboards));
     
   }
   render() {
-    let { user, username, defaultboards } = this.props;
+    let { user, username} = this.props;
     // let { username } = this.props;
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div className="App">
         <Aggregate/>
@@ -52,10 +49,12 @@ class App extends Component {
           </div>
           : <SignIn /> 
         }
-        { defaultboards.boardsloaded ? 
-          <BoardsContainer defaultboards={defaultboards}/>
-          : 'Boards are loading...'}
-        {/* <Board /> */}
+        <Route path='/boards' component = {Boards} />
+        <Route exact path='/' render={() => 
+          <Redirect to='/boards'/>}
+        />
+        
+        
       </div>
     );
   }

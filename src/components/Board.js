@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, Route, Redirect } from 'react-router-dom';
-import PinContainer from './PinContainer';
+import Pins from './Pins';
+import substitutePins from '../fakeDataPins';
 
 const Board = (props) => {
   // debugger;
@@ -16,7 +17,8 @@ const Board = (props) => {
           src={props.singleboard.image['60x60']['url']}
         />
       </Link>
-      <Route path={'/boards/' + props.singleboard.name} component={PinContainer}/>
+      <Route path={'/boards/' + props.singleboard.name} component={Pins}/>
+      <Pins/>
     </div>
   );
 };

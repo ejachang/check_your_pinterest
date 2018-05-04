@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const PinContainer = (props) => {
+const Pin = (props) => {
   return (
     <div>
       
@@ -10,4 +10,4 @@ const PinContainer = (props) => {
 
 };
 
-export default PinContainer;
+export default Pin;

@@ -1,28 +1,41 @@
 import React, { Component } from 'react';
 // import { Link, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { boardsData } from '../actions/boards_actions';
+import { substituteboards } from '../fakeData';
 import Board from './Board';
+
 // import Search from './Search';
 /* Stateless comp doesn't really need to know the Redux state . Redux state is usually a bit higher level
 If a component is only using a bit of state for that component specifically, don't really need Redux state,
 just React state. But with data that needs to be shared between all comp, Redux is good for that.
 */
-class BoardsContainer extends Component {
+{/* { defaultboards.boardsloaded ? 
+          <Boards defaultboards={defaultboards}/>
+          : 'Boards are loading...'} */}
+class Boards extends Component {
   constructor(props) {
     super(props);
     this.state = {
       enteredtext: ''
+      
     };
     this.handleSearchChange = this.handleSearchChange.bind(this);
     // this.handlePinClick = this.handlePinClick.bind(this);
   }
+  componentDidMount() {
+    this.props.dispatch(boardsData(substituteboards));
+  }
+
   handleSearchChange(e) {
     this.setState({
       enteredtext: e.target.value
     });
   }
-
+  
   render() {
-    // console.log('board props', this.props);
+    debugger;
+    console.log('boards props', this.props);
     let { defaultboards } = this.props;
     // debugger;
     return (
@@ -55,4 +68,15 @@ class BoardsContainer extends Component {
   }
 }
 
-export default BoardsContainer;
+//turning state to props on the react comp
+const mapStateToProps = (state) => {
+  // debugger;
+  // console.log(state);
+  return {
+    username: state.username.firstname,
+    user: state.user.loggedin,
+    defaultboards: state.defaultboards
+  };
+};
+
+export default connect(mapStateToProps)(Boards);
