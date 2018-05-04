@@ -9,7 +9,7 @@ import { profileInfo } from '../actions/profile_actions';
 import { boardsData } from '../actions/boards_actions';
 
 
-import { fakeSuggestedBoard, fakeProfileData } from '../fakeData';
+import { fakeSuggestedBoard, fakeProfileData, substituteboards } from '../fakeData';
 import '../style.css';
 import Header from './Header';
 //import Upload from './Upload';
@@ -25,18 +25,20 @@ class App extends Component {
   // }
   componentDidMount() {
     let parsed = queryString.parse(window.location.search);
+    // debugger;
     if (parsed.access_token !== 'undefined' || parsed.access_token !== undefined) {
-      // debugger;
       this.props.dispatch(signedIn());
       // console.log('user should be true', this.props);
     }
     this.props.dispatch(profileInfo(fakeProfileData));
-    
+    // this.props.dispatch(boardsData(substituteboards));
   }
   render() {
+    // debugger;
     let { user, username} = this.props;
     // let { username } = this.props;
     // console.log(this.props);
+    // debugger;
     return (
       <div className="App">
         <Aggregate/>
@@ -66,7 +68,7 @@ const mapStateToProps = (state) => {
   return {
     username: state.username.firstname,
     user: state.user.loggedin,
-    defaultboards: state.defaultboards
+    // defaultboards: state.defaultboards
   };
 };
 

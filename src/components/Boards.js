@@ -10,9 +10,7 @@ import Board from './Board';
 If a component is only using a bit of state for that component specifically, don't really need Redux state,
 just React state. But with data that needs to be shared between all comp, Redux is good for that.
 */
-{/* { defaultboards.boardsloaded ? 
-          <Boards defaultboards={defaultboards}/>
-          : 'Boards are loading...'} */}
+
 class Boards extends Component {
   constructor(props) {
     super(props);
@@ -34,9 +32,9 @@ class Boards extends Component {
   }
   
   render() {
-    debugger;
-    console.log('boards props', this.props);
-    let { defaultboards } = this.props;
+    // debugger;
+    // console.log('boards props', this.props);
+    let { defaultboards, boardsloaded } = this.props;
     // debugger;
     return (
       <div>
@@ -51,18 +49,23 @@ class Boards extends Component {
             {/* <input type="submit" value="Submit" /> */}
           </form>
         </div>
-        <div className="boardsgrid">
-          <div className="GridItems flex flex-wrap centeredWithinWrapper">
-            {defaultboards.boards.data.map((boarddata) => {
-              let boarddataLower = boarddata.name.toLowerCase();
-              return boarddataLower.includes(this.state.enteredtext.toLowerCase()) ?
-                <Board 
-                  singleboard = {boarddata}
-                  key={boarddata.id}/>
-                : null;
-            })}
+        { boardsloaded ?
+          <div className="boardsgrid">
+            <div className="GridItems flex flex-wrap centeredWithinWrapper">
+              {defaultboards.boards.data.map((boarddata) => {
+                let boarddataLower = boarddata.name.toLowerCase();
+                return boarddataLower.includes(this.state.enteredtext.toLowerCase()) ?
+                  <Board 
+                    singleboard = {boarddata}
+                    key={boarddata.id}/>
+                  : null;
+              })}
+            </div>
+          </div> :
+          <div>
+            Boards are loading...
           </div>
-        </div>
+        }
       </div>
     );
   }
@@ -71,10 +74,7 @@ class Boards extends Component {
 //turning state to props on the react comp
 const mapStateToProps = (state) => {
   // debugger;
-  // console.log(state);
   return {
-    username: state.username.firstname,
-    user: state.user.loggedin,
     defaultboards: state.defaultboards
   };
 };

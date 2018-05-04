@@ -17,7 +17,7 @@ const Board = (props) => {
           src={props.singleboard.image['60x60']['url']}
         />
       </Link>
-      <Route path={'/boards/' + props.singleboard.name} component={Pins}/>
+      <Route path={'/boards/' + props.singleboard.name}/>
       <Pins/>
     </div>
   );
