@@ -31,10 +31,12 @@ class App extends Component {
       // console.log('user should be true', this.props);
     }
     this.props.dispatch(profileInfo(fakeProfileData));
-    // this.props.dispatch(boardsData(substituteboards));
+    this.props.dispatch(boardsData(substituteboards));
+    debugger;
   }
   render() {
     // debugger;
+    debugger;
     let { user, username} = this.props;
     // let { username } = this.props;
     // console.log(this.props);
@@ -63,12 +65,12 @@ class App extends Component {
 }
 //turning state to props on the react comp
 const mapStateToProps = (state) => {
-  // debugger;
+  debugger;
   // console.log(state);
   return {
     username: state.username.firstname,
     user: state.user.loggedin,
-    // defaultboards: state.defaultboards
+    defaultboards: state.defaultboards
   };
 };
 

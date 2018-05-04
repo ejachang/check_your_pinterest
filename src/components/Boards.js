@@ -22,7 +22,9 @@ class Boards extends Component {
     // this.handlePinClick = this.handlePinClick.bind(this);
   }
   componentDidMount() {
-    this.props.dispatch(boardsData(substituteboards));
+    // debugger;
+    // this.props.dispatch(boardsData(substituteboards));
+    // debugger;
   }
 
   handleSearchChange(e) {
