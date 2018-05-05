@@ -11,13 +11,6 @@ If a component is only using a bit of state for that component specifically, don
 just React state. But with data that needs to be shared between all comp, Redux is good for that.
 */
 
-/*
-NOTE: 
--Current guess as to why Boards is not dispatching actions in componentDidMount is because it is 
-not connected to the Redux state.
--need to connect it at index (the root)
--possibly need to update Router set up at index (the root) as well
-*/
 class Boards extends Component {
   constructor(props) {
     super(props);
@@ -26,11 +19,6 @@ class Boards extends Component {
     };
     this.handleSearchChange = this.handleSearchChange.bind(this);
     // this.handlePinClick = this.handlePinClick.bind(this);
-  }
-  componentDidMount() {
-    debugger;
-    this.props.dispatch(boardsData(substituteboards));
-    debugger;
   }
 
   handleSearchChange(e) {
@@ -54,33 +42,32 @@ class Boards extends Component {
             {/* <input type="submit" value="Submit" /> */}
           </form>
         </div>
-        { boardsloaded ?
-          <div className="boardsgrid">
-            <div className="GridItems flex flex-wrap centeredWithinWrapper">
-              {defaultboards.boards.data.map((boarddata) => {
-                let boarddataLower = boarddata.name.toLowerCase();
-                return boarddataLower.includes(this.state.enteredtext.toLowerCase()) ?
-                  <Board 
-                    singleboard = {boarddata}
-                    key={boarddata.id}/>
-                  : null;
-              })}
-            </div>
-          </div> 
-          : 'Boards are loading...'
-        }
+        <div className="boardsgrid">
+          <div className="GridItems flex flex-wrap centeredWithinWrapper">
+            {defaultboards.boards.data.map((boarddata) => {
+              let boarddataLower = boarddata.name.toLowerCase();
+              return boarddataLower.includes(this.state.enteredtext.toLowerCase()) ?
+                <Board 
+                  singleboard = {boarddata}
+                  key={boarddata.id}/>
+                : null;
+            })
+            }
+          </div>
+        </div> 
       </div>
     );
   }
 }
 
+// export default Boards;
 //turning state to props on the react comp
 const mapStateToProps = state => {
   return { defaultboards: state.defaultboards };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return { boardsData }; 
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return { boardsData }; 
+// };
 
 export default connect(mapStateToProps)(Boards);
