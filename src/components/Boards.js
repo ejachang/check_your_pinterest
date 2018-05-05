@@ -16,15 +16,14 @@ class Boards extends Component {
     super(props);
     this.state = {
       enteredtext: ''
-      
     };
     this.handleSearchChange = this.handleSearchChange.bind(this);
     // this.handlePinClick = this.handlePinClick.bind(this);
   }
   componentDidMount() {
-    // debugger;
-    // this.props.dispatch(boardsData(substituteboards));
-    // debugger;
+    debugger;
+    this.props.dispatch(boardsData(substituteboards));
+    debugger;
   }
 
   handleSearchChange(e) {
@@ -34,10 +33,7 @@ class Boards extends Component {
   }
   
   render() {
-    // debugger;
-    // console.log('boards props', this.props);
     let { defaultboards, boardsloaded } = this.props;
-    // debugger;
     return (
       <div>
         <div className="search">
@@ -63,10 +59,8 @@ class Boards extends Component {
                   : null;
               })}
             </div>
-          </div> :
-          <div>
-            Boards are loading...
-          </div>
+          </div> 
+          : 'Boards are loading...'
         }
       </div>
     );
@@ -74,11 +68,12 @@ class Boards extends Component {
 }
 
 //turning state to props on the react comp
-const mapStateToProps = (state) => {
-  // debugger;
-  return {
-    defaultboards: state.defaultboards
-  };
+const mapStateToProps = state => {
+  return { defaultboards: state.defaultboards };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return { boardsData }; 
 };
 
 export default connect(mapStateToProps)(Boards);

@@ -27,20 +27,12 @@ class App extends Component {
     let parsed = queryString.parse(window.location.search);
     // debugger;
     if (parsed.access_token !== 'undefined' || parsed.access_token !== undefined) {
-      this.props.dispatch(signedIn());
-      // console.log('user should be true', this.props);
+      this.props.dispatch(signedIn()); 
     }
     this.props.dispatch(profileInfo(fakeProfileData));
-    this.props.dispatch(boardsData(substituteboards));
-    debugger;
   }
   render() {
-    // debugger;
-    debugger;
-    let { user, username} = this.props;
-    // let { username } = this.props;
-    // console.log(this.props);
-    // debugger;
+    let { user, username, defaultboards } = this.props;
     return (
       <div className="App">
         <Aggregate/>
@@ -53,20 +45,17 @@ class App extends Component {
           </div>
           : <SignIn /> 
         }
-        <Route path='/boards' component = {Boards} />
+        {/* <Boards defaultboards={defaultboards}/> */}
+        {/* <Route path='/boards' component={Boards} />
         <Route exact path='/' render={() => 
           <Redirect to='/boards'/>}
-        />
-        
-        
+        /> */}
       </div>
     );
   }
 }
 //turning state to props on the react comp
-const mapStateToProps = (state) => {
-  debugger;
-  // console.log(state);
+const mapStateToProps = state => {
   return {
     username: state.username.firstname,
     user: state.user.loggedin,
