@@ -76,3 +76,10 @@ element.style {
 .search {
   padding-top: 10px;
 }
+
+#singleboardname {
+  color: black;
+  text-decoration: none; }
+
+#singleboardname:hover {
+  text-decoration: underline; }

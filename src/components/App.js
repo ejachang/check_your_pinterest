@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import queryString from 'query-string';
+import { Route, Redirect } from 'react-router-dom';
+// import PropTypes from 'prop-types';
+
 import { signedIn } from '../actions/signin_actions';
 import { profileInfo } from '../actions/profile_actions';
 import { boardsData } from '../actions/boards_actions';
-// import PropTypes from 'prop-types';
+
+
 import { fakeSuggestedBoard, fakeProfileData, substituteboards } from '../fakeData';
 import '../style.css';
 import Header from './Header';
@@ -13,7 +17,6 @@ import Aggregate from './Aggregate';
 import SignIn from './SignIn';
 import Profile from './Profile';
 import Boards from './Boards';
-// import Board from './Board';
 
 class App extends Component {
   // constructor(props) {
@@ -22,19 +25,14 @@ class App extends Component {
   // }
   componentDidMount() {
     let parsed = queryString.parse(window.location.search);
+    // debugger;
     if (parsed.access_token !== 'undefined' || parsed.access_token !== undefined) {
-      // debugger;
-      this.props.dispatch(signedIn());
-      // console.log('user should be true', this.props);
+      this.props.dispatch(signedIn()); 
     }
     this.props.dispatch(profileInfo(fakeProfileData));
-    this.props.dispatch(boardsData(substituteboards));
-    
   }
   render() {
     let { user, username, defaultboards } = this.props;
-    // let { username } = this.props;
-    console.log(this.props);
     return (
       <div className="App">
         <Aggregate/>
@@ -47,21 +45,17 @@ class App extends Component {
           </div>
           : <SignIn /> 
         }
-
-
-        { defaultboards.boardsloaded ? 
-          <Boards
-            defaultboards={defaultboards}/>
-          : 'Boards are loading...'}
-        {/* <Board /> */}
+        {/* <Boards defaultboards={defaultboards}/> */}
+        {/* <Route path='/boards' component={Boards} />
+        <Route exact path='/' render={() => 
+          <Redirect to='/boards'/>}
+        /> */}
       </div>
     );
   }
 }
 //turning state to props on the react comp
-const mapStateToProps = (state) => {
-  // debugger;
-  // console.log(state);
+const mapStateToProps = state => {
   return {
     username: state.username.firstname,
     user: state.user.loggedin,
