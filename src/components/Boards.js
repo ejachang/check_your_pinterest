@@ -11,6 +11,13 @@ If a component is only using a bit of state for that component specifically, don
 just React state. But with data that needs to be shared between all comp, Redux is good for that.
 */
 
+/*
+NOTE: 
+-Current guess as to why Boards is not dispatching actions in componentDidMount is because it is 
+not connected to the Redux state.
+-need to connect it at index (the root)
+-possibly need to update Router set up at index (the root) as well
+*/
 class Boards extends Component {
   constructor(props) {
     super(props);
