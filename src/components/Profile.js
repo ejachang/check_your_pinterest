@@ -4,7 +4,7 @@ const Profile = (props) => {
   // debugger;
   return (
     <div>
-      {props.firstname} has signed in
+      Welcome, {props.firstname}
     </div>
   );
 };
