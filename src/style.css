@@ -83,3 +83,8 @@ element.style {
 
 #singleboardname:hover {
   text-decoration: underline; }
+
+.notecontainer {
+  /* display: flex; */
+  text-align: center;
+}
