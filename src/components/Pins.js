@@ -10,11 +10,13 @@ class Pins extends Component {
       <div>
         {substitutePins.data.map((pin) => {
           return (
-            <div key={pin.id}>
-              <div className="notecontainer">
-                <h5>{pin.note}</h5>
+            <div className="pincontainer">
+              <div key={pin.id}>
+                <div className="notecontainer">
+                  <h5>{pin.note}</h5>
+                </div>
+                <img src={pin.image.original.url}/>
               </div>
-              <img src={pin.image.original.url}/>
             </div>);
           // return <Pin />;
         }) }
