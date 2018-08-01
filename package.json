@@ -8,6 +8,7 @@
     "prop-types": "^15.6.1"
   },
   "dependencies": {
+    "browser-sync": "^2.24.4",
     "hoek": "^5.0.3",
     "node-fetch": "^2.1.2",
     "nodemon": "^1.17.3",
