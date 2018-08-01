@@ -18,7 +18,6 @@ const Board = (props) => {
         />
       </Link>
       <Route path={'/boards/' + props.singleboard.name}/>
-      <Pins/>
     </div>
   );
 };

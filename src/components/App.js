@@ -8,8 +8,9 @@ import { signedIn } from '../actions/signin_actions';
 import { profileInfo } from '../actions/profile_actions';
 import { boardsData } from '../actions/boards_actions';
 
-
 import { fakeSuggestedBoard, fakeProfileData, substituteboards } from '../fakeData';
+import { substitutePins } from '../fakeDataPins';
+
 import '../style.css';
 import Header from './Header';
 //import Upload from './Upload';
@@ -17,6 +18,7 @@ import Aggregate from './Aggregate';
 import SignIn from './SignIn';
 import Profile from './Profile';
 import Boards from './Boards';
+import Pins from './Pins';
 
 class App extends Component {
   // constructor(props) {
@@ -30,6 +32,8 @@ class App extends Component {
       this.props.dispatch(signedIn()); 
     }
     this.props.dispatch(profileInfo(fakeProfileData));
+    this.props.dispatch(boardsData(substituteboards));
+    
   }
   render() {
     let { user, username, defaultboards } = this.props;
@@ -42,14 +46,18 @@ class App extends Component {
             <br></br>
             <Profile 
               firstname={username} />
+            <Pins
+              substitutePins={substitutePins}/>
+            {/* <Boards defaultboards={defaultboards}/> */}
+            {/* <Boards/> */}
+            {/* <Route path='/boards' component={Boards} />
+            <Route exact path='/' render={() => 
+              <Redirect to='/boards'/>}
+            /> */}
           </div>
           : <SignIn /> 
         }
-        {/* <Boards defaultboards={defaultboards}/> */}
-        {/* <Route path='/boards' component={Boards} />
-        <Route exact path='/' render={() => 
-          <Redirect to='/boards'/>}
-        /> */}
+        
       </div>
     );
   }
