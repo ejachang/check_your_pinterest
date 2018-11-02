@@ -48,12 +48,8 @@ class App extends Component {
               firstname={username} />
             <Pins
               substitutePins={substitutePins}/>
-            {/* <Boards defaultboards={defaultboards}/> */}
-            {/* <Boards/> */}
-            {/* <Route path='/boards' component={Boards} />
-            <Route exact path='/' render={() => 
-              <Redirect to='/boards'/>}
-            /> */}
+            {/* <Boards defaultboards={defaultboards}/>
+            <Boards/> */}
           </div>
           : <SignIn /> 
         }
@@ -71,9 +67,9 @@ const mapStateToProps = state => {
   };
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return signedIn;
-// };
+const mapDispatchToProps = (dispatch) => {
+  return signedIn;
+};
 
 // App.propTypes = {
   // username: PropTypes.string,
