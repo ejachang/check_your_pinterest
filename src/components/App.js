@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import queryString from 'query-string';
-import { Route, Redirect } from 'react-router-dom';
-// import PropTypes from 'prop-types';
 
 import { signedIn } from '../actions/signin_actions';
 import { profileInfo } from '../actions/profile_actions';
 import { boardsData } from '../actions/boards_actions';
 
-import { fakeSuggestedBoard, fakeProfileData, substituteboards } from '../fakeData';
-import { substitutePins } from '../fakeDataPins';
-
 import '../style.css';
 import Header from './Header';
-//import Upload from './Upload';
 import Aggregate from './Aggregate';
 import SignIn from './SignIn';
 import Profile from './Profile';
@@ -21,22 +15,38 @@ import Boards from './Boards';
 import Pins from './Pins';
 
 class App extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {};
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: false
+    };
+  }
   componentDidMount() {
     let parsed = queryString.parse(window.location.search);
-    // debugger;
+    const { access_token } = parsed;
     if (parsed.access_token !== 'undefined' || parsed.access_token !== undefined) {
-      this.props.dispatch(signedIn()); 
+      this.props.dispatch(signedIn(parsed.access_token)); 
     }
-    this.props.dispatch(profileInfo(fakeProfileData));
-    this.props.dispatch(boardsData(substituteboards));
     
+    fetch('https://api.pinterest.com/v1/me/boards/?access_token=' + access_token + '&fields=image, url, name' )
+      .then(response => response.json())
+      .then(data => console.log('datatest', data.data))
+      .then(data => this.props.dispatch(boardsData(data.data)))
+      .catch(error => console.log(error));
+    
+    fetch('https://api.pinterest.com/v1/me/?access_token=' + access_token + '&fields=first_name, last_name' )
+      .then(response => response.json())
+      // .then(data => console.log('name test', data.data.first_name))
+      .then(data => {
+        console.log('name test', data);
+        this.props.dispatch(profileInfo(data.data.first_name));
+      })
+      .catch(error => console.log(error) );      
+
   }
   render() {
-    let { user, username, defaultboards } = this.props;
+    console.log('hey', this.props);
+    let { user, firstname } = this.props;
     return (
       <div className="App">
         <Aggregate/>
@@ -45,18 +55,11 @@ class App extends Component {
           <div>
             <br></br>
             <Profile 
-              firstname={username} />
-            <Pins
-              substitutePins={substitutePins}/>
-            {/* <Boards defaultboards={defaultboards}/> */}
+              firstname={firstname} />
+            <Pins/>
             {/* <Boards/> */}
-            {/* <Route path='/boards' component={Boards} />
-            <Route exact path='/' render={() => 
-              <Redirect to='/boards'/>}
-            /> */}
           </div>
-          : <SignIn /> 
-        }
+          : <SignIn /> }
         
       </div>
     );
@@ -71,14 +74,9 @@ const mapStateToProps = state => {
   };
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return signedIn;
-// };
+const mapDispatchToProps = (dispatch) => {
+  return signedIn;
+};
 
-// App.propTypes = {
-  // username: PropTypes.string,
-  // user: PropTypes.boolean,
-  // defaultboard: PropTypes.object.isRequired
-// };
 
 export default connect(mapStateToProps)(App);

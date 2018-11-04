@@ -7,7 +7,7 @@ const PinterestProfileReducer = (state = _defaultProfileInfo, action) => {
   let newProfileInfo = Object.assign({}, state);
   switch (action.type) {
   case PROFILE_INFO: 
-    newProfileInfo.firstname = action.payload.data.first_name;
+    newProfileInfo.firstname = action.payload.first_name;
     return newProfileInfo;
   default: 
     return state;

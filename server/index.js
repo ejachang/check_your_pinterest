@@ -54,32 +54,6 @@ app.get('/callback', function(req, res) {
     },
     json: true
   };
-  
-  request.post(authOptions, function(error, response, body) {
-    // eslint-disable-next-line
-    let access_token = body.access_token
-    let uri = process.env.FRONTEND_URI || 'http://localhost:3000';  
-    /*
-    let options = {
-      method: 'GET',
-      headers: { headers: { 'Authorization': 'Bearer' + access_token}},
-      body: null,
-      redirect: process.env.FRONTEND_URI || 'http://localhost:3000'
-    };
-
-//fetch boards info
-    fetch('https://api.pinterest.com/v1/me/boards/?access_token=' + access_token + '&fields=image, url, name', 
-      options)
-      .then(response => response.json())
-      .then(data => console.log(data))
-      // .then(data => this.props.dispatch(boardsData(data)))
-      .catch(error => console.log(error) );
-     */
-    
-    // eslint-disable-next-line
-    res.redirect(uri + '?access_token=' + access_token)
-  });
-  
 });
 
 app.get('/boards/:board', function(req, res) {
@@ -109,66 +83,6 @@ app.get('/boards/:board', function(req, res) {
     res.redirect(uri + '/boards/' + board);
 
 }); 
-
-app.get('/pins/:board', function(req, res) {
-  //get specific pin info
-  //view specific pin
-  let board = req.params.board;
-  let pin = req.params.pin;
-  let uri = 'http://localhost:3000';
-  //fetch boards info
-  // eslint-disable-next-line
- let app_token;
-  // eslint-disable-next-line
-  let access_token = process.env.APP_TOKEN || app_token
-  let options = {
-    method: 'GET',
-    // eslint-disable-next-line
-    headers: { headers: { 'Authorization': 'Bearer' + access_token}},
-    body: null,
-    redirect: process.env.FRONTEND_URI || ('http://localhost:3000/pins/' + board) 
-  };
-  // eslint-disable-next-line
-  fetch('https://api.pinterest.com/v1/boards/' + board + '/pins/?access_token=' + access_token + '&fields=id%2Clink%2Cnote%2Curl%2Cimage')
-    .then(response => response.json())
-    .then(data => console.log(data))
-    // .then(data => this.props.dispatch(boardsData(data)))
-    .catch(error => console.log(error) );  
-   
-  // eslint-disable-next-line
-     res.redirect(uri + '/boards')
-}); 
-
-app.get('/pin/:pin/board/:board', function(req, res) {
-  //get specific pin info
-  //view specific pin
-  let board = req.params.board;
-  let pin = req.params.pin;
-  let uri = 'http://localhost:3000';
-  //fetch boards info
-  // eslint-disable-next-line
- let app_token;
-  // eslint-disable-next-line
-  let access_token = process.env.APP_TOKEN || app_token
-  let options = {
-    method: 'GET',
-    // eslint-disable-next-line
-    headers: { headers: { 'Authorization': 'Bearer' + access_token}},
-    body: null,
-    redirect: process.env.FRONTEND_URI || ('http://localhost:3000/boards/' + board) 
-  };
-  // eslint-disable-next-line
-  //!!update fetch url!!
-  // fetch('https://api.pinterest.com/v1/boards/' + board + '/pins/?access_token=' + access_token + '&fields=id%2Clink%2Cnote%2Curl%2Cimage')
-  //   .then(response => response.json())
-  //   .then(data => console.log(data))
-  //   // .then(data => this.props.dispatch(boardsData(data)))
-  //   .catch(error => console.log(error) );  
-   
-  // eslint-disable-next-line
-     res.redirect(uri + '/boards')
-}); 
-
 
 const portNum = process.env.PORT || 8888;
 

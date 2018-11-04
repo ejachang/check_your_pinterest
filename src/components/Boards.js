@@ -28,7 +28,7 @@ class Boards extends Component {
   }
   
   render() {
-    let { defaultboards, boardsloaded } = this.props;
+    let { defaultboards } = this.props;
     return (
       <div>
         <div className="search">
@@ -39,12 +39,11 @@ class Boards extends Component {
                 onChange={this.handleSearchChange}
               />
             </label>
-            {/* <input type="submit" value="Submit" /> */}
           </form>
         </div>
         <div className="boardsgrid">
           <div className="GridItems flex flex-wrap centeredWithinWrapper">
-            {defaultboards.boards.data.map((boarddata) => {
+            {defaultboards.map((boarddata) => {
               let boarddataLower = boarddata.name.toLowerCase();
               return boarddataLower.includes(this.state.enteredtext.toLowerCase()) ?
                 <Board 

@@ -13,7 +13,7 @@ const DefaultBoardReducer = (state = _defaultBoards, action) => {
     newDefaultBoards.boardsloaded = true;
     return newDefaultBoards;
   default: 
-    return _defaultBoards;
+    return state;
   }
 };
 
