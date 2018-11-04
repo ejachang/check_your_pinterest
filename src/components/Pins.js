@@ -16,7 +16,7 @@ class Pins extends Component {
                 <img src={pin.image.original.url}/>
               </div>
             </div>); */}
-          {/* // return <Pin />; */}
+        {/* // return <Pin />; */}
         {/* }) } */}
       </div>
     );

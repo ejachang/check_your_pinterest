@@ -36,13 +36,16 @@ class App extends Component {
     
     fetch('https://api.pinterest.com/v1/me/?access_token=' + access_token + '&fields=first_name, last_name' )
       .then(response => response.json())
-      .then(data => console.log('name test', data.data.first_name))
-      .then(data => this.props.dispatch(profileInfo(data.data.first_name)))
+      // .then(data => console.log('name test', data.data.first_name))
+      .then(data => {
+        console.log('name test', data);
+        this.props.dispatch(profileInfo(data.data.first_name));
+      })
       .catch(error => console.log(error) );      
 
   }
   render() {
-    console.log(this.props);
+    console.log('hey', this.props);
     let { user, first_name } = this.props;
     return (
       <div className="App">

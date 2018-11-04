@@ -2,8 +2,6 @@ import React from 'react';
 import Pins from './Pins';
 
 const Board = (props) => {
-  //fetch info from server
-  //redirect to Pins comp link
   return (
     <div id="boardwrapper">
       <h5 id="singleboardname">{props.singleboard.name}</h5>
