@@ -54,6 +54,7 @@ app.get('/callback', function(req, res) {
     },
     json: true
   };
+});
 
 app.get('/boards/:board', function(req, res) {
   //get specific board info
