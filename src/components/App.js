@@ -30,9 +30,9 @@ class App extends Component {
     
     fetch('https://api.pinterest.com/v1/me/boards/?access_token=' + access_token + '&fields=image, url, name' )
       .then(response => response.json())
-      .then(data => console.log('datatest', data))
-      .then(data => this.props.dispatch(boardsData(data)))
-      .catch(error => console.log(error) );
+      .then(data => console.log('datatest', data.data))
+      .then(data => this.props.dispatch(boardsData(data.data)))
+      .catch(error => console.log(error));
     
     fetch('https://api.pinterest.com/v1/me/?access_token=' + access_token + '&fields=first_name, last_name' )
       .then(response => response.json())
@@ -46,7 +46,7 @@ class App extends Component {
   }
   render() {
     console.log('hey', this.props);
-    let { user, first_name } = this.props;
+    let { user, firstname } = this.props;
     return (
       <div className="App">
         <Aggregate/>
@@ -55,7 +55,7 @@ class App extends Component {
           <div>
             <br></br>
             <Profile 
-              firstname={first_name} />
+              firstname={firstname} />
             <Pins/>
             {/* <Boards/> */}
           </div>
