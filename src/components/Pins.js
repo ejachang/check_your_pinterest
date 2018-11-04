@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import Pin from './Pin';
-// import substitutePins from '../fakeDataPins';
 
 class Pins extends Component {
   render() {
-    let { substitutePins } = this.props;
+    // let { substitutePins } = this.props;
     // console.log(substitutePins.data);
     return (
       <div>
-        {substitutePins.data.map((pin) => {
+        {/* {substitutePins.data.map((pin) => {
           return (
             <div className="pincontainer">
               <div key={pin.id}>
@@ -17,9 +15,9 @@ class Pins extends Component {
                 </div>
                 <img src={pin.image.original.url}/>
               </div>
-            </div>);
-          // return <Pin />;
-        }) }
+            </div>); */}
+          {/* // return <Pin />; */}
+        {/* }) } */}
       </div>
     );
   }

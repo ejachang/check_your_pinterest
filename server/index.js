@@ -59,23 +59,41 @@ app.get('/callback', function(req, res) {
     // eslint-disable-next-line
     let access_token = body.access_token
     let uri = process.env.FRONTEND_URI || 'http://localhost:3000';  
-    /*
+
     let options = {
       method: 'GET',
       headers: { headers: { 'Authorization': 'Bearer' + access_token}},
       body: null,
       redirect: process.env.FRONTEND_URI || 'http://localhost:3000'
     };
+    // Promise.all([
+    //   fetch('https://api.pinterest.com/v1/me/boards/?access_token=' + access_token + '&fields=image, url, name'),
+    //   fetch('https://api.pinterest.com/v1/me/?access_token=' + access_token + '&fields=first_name, last_name'),
+    // ])
+    //   .then(([boardsData, userData]) => {
+    //     boardsData.json();
+    //     console.log(boardsData);
+    //     userData.json();
+    //   })
+    //   .then(boardsData => {
+    //     // console.log(boardsData);
+    //     // console.log('after json1', boardsData, 'afterjson2', userData);
+    //   })
+    //   .catch(error => console.log(error) ); 
 
-//fetch boards info
-    fetch('https://api.pinterest.com/v1/me/boards/?access_token=' + access_token + '&fields=image, url, name', 
-      options)
-      .then(response => response.json())
-      .then(data => console.log(data))
-      // .then(data => this.props.dispatch(boardsData(data)))
-      .catch(error => console.log(error) );
-     */
+    // fetch('https://api.pinterest.com/v1/me/boards/?access_token=' + access_token + '&fields=image, url, name', 
+    //   options)
+    //   .then(response => response.json())
+    //   .then(data => console.log('datatest', data))
+    //   .then(data => this.props.dispatch(boardsData(data)))
+    //   .catch(error => console.log(error) );
     
+    // fetch('https://api.pinterest.com/v1/me/?access_token=' + access_token + '&fields=first_name, last_name', 
+    //   options)
+    //   .then(response => response.json())
+    //   .then(data => console.log('name test', data.first_name))
+    //   .then(data => this.props.dispatch(profileInfo(data.data.first_name)))
+    //   .catch(error => console.log(error) );      
     // eslint-disable-next-line
     res.redirect(uri + '?access_token=' + access_token)
   });
@@ -159,11 +177,11 @@ app.get('/pin/:pin/board/:board', function(req, res) {
   };
   // eslint-disable-next-line
   //!!update fetch url!!
-  // fetch('https://api.pinterest.com/v1/boards/' + board + '/pins/?access_token=' + access_token + '&fields=id%2Clink%2Cnote%2Curl%2Cimage')
-  //   .then(response => response.json())
-  //   .then(data => console.log(data))
-  //   // .then(data => this.props.dispatch(boardsData(data)))
-  //   .catch(error => console.log(error) );  
+  fetch('https://api.pinterest.com/v1/boards/' + board + '/pins/?access_token=' + access_token + '&fields=id%2Clink%2Cnote%2Curl%2Cimage')
+    .then(response => response.json())
+    .then(data => console.log(data))
+    // .then(data => this.props.dispatch(boardsData(data)))
+    .catch(error => console.log(error) );  
    
   // eslint-disable-next-line
      res.redirect(uri + '/boards')
