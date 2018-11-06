@@ -15,12 +15,12 @@ import Boards from './Boards';
 import Pins from './Pins';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: false
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     user: false
+  //   };
+  // }
   componentDidMount() {
     let parsed = queryString.parse(window.location.search);
     const { access_token } = parsed;
@@ -30,11 +30,14 @@ class App extends Component {
     
     fetch('https://api.pinterest.com/v1/me/boards/?access_token=' + access_token + '&fields=image, url, name' )
       .then(response => response.json())
-      .then(data => console.log('datatest', data.data))
-      .then(data => this.props.dispatch(boardsData(data.data)))
+      .then(data => {
+        console.log('datatest', data.data);
+        this.props.dispatch(boardsData(data.data));
+      })
+      // .then(data => this.props.dispatch(boardsData(data.data)))
       .catch(error => console.log(error));
     
-    fetch('https://api.pinterest.com/v1/me/?access_token=' + access_token + '&fields=first_name, last_name' )
+    fetch('https://api.pinterest.com/v1/me/?access_token=' + access_token + '&fields=first_name' )
       .then(response => response.json())
       // .then(data => console.log('name test', data.data.first_name))
       .then(data => {
@@ -46,7 +49,8 @@ class App extends Component {
   }
   render() {
     console.log('hey', this.props);
-    let { user, firstname } = this.props;
+    let { user, firstname, defaultboards } = this.props;
+    console.log('hey2', defaultboards.boards);
     return (
       <div className="App">
         <Aggregate/>
@@ -54,10 +58,12 @@ class App extends Component {
         { user ? 
           <div>
             <br></br>
-            <Profile 
-              firstname={firstname} />
+            <Profile firstname={firstname} />
             <Pins/>
-            {/* <Boards/> */}
+            {Object.keys(defaultboards.boards.data).length !== 0 ?
+              <Boards 
+                defaultboards={defaultboards.boards}/> 
+              : null}
           </div>
           : <SignIn /> }
         
@@ -65,10 +71,10 @@ class App extends Component {
     );
   }
 }
-//turning state to props on the react comp
+
 const mapStateToProps = state => {
   return {
-    username: state.username.firstname,
+    firstname: state.firstname,
     user: state.user.loggedin,
     defaultboards: state.defaultboards
   };

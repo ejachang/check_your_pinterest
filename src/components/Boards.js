@@ -28,10 +28,13 @@ class Boards extends Component {
   }
   
   render() {
-    let { defaultboards } = this.props;
+    let allboards = this.props.defaultboards.boards;
+    console.log('boards test', allboards);
+    console.log('board', allboards[0]);
+    debugger
     return (
       <div>
-        <div className="search">
+        {/* <div className="search">
           <form>
             <label> Search: 
               <input type="text" 
@@ -40,18 +43,25 @@ class Boards extends Component {
               />
             </label>
           </form>
-        </div>
+        </div> */}
         <div className="boardsgrid">
           <div className="GridItems flex flex-wrap centeredWithinWrapper">
-            {defaultboards.map((boarddata) => {
+            {/* {console.log('x', allboards)}
+            {allboards.data.map((boarddata, idx) => {
               let boarddataLower = boarddata.name.toLowerCase();
               return boarddataLower.includes(this.state.enteredtext.toLowerCase()) ?
                 <Board 
                   singleboard = {boarddata}
-                  key={boarddata.id}/>
+                  key={boarddata[idx]}/>
                 : null;
-            })
-            }
+            })} */}
+            {/* {Object.keys(allboards.data).length === 0} */}
+            {allboards.data.map((boarddata, idx) => { 
+              <Board 
+                singleboard = {boarddata}
+                key={boarddata[idx]}/>;            
+            })}
+              
           </div>
         </div> 
       </div>
