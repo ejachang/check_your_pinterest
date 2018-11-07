@@ -50,23 +50,26 @@ class App extends Component {
   render() {
     console.log('hey', this.props);
     let { user, firstname, defaultboards } = this.props;
-    console.log('hey2', defaultboards.boards);
+    let boardspassed;
+    if (defaultboards.data !== null) {
+      boardspassed = defaultboards.data;
+    } else {
+      boardspassed = 'Boards are loading';
+    }
     return (
       <div className="App">
         <Aggregate/>
         <Header />
-        { user ? 
+        {user ? 
+          firstname ?
+            <Profile firstname={firstname} /> 
+            : <div style={{ 'text-align': 'center'}}>Page is loading</div>
+          : <SignIn />}
+        { defaultboards.data !== null ? 
           <div>
-            <br></br>
-            <Profile firstname={firstname} />
-            <Pins/>
-            {Object.keys(defaultboards.boards.data).length !== 0 ?
-              <Boards 
-                defaultboards={defaultboards.boards}/> 
-              : null}
+            <Boards defaultboards={boardspassed}/> 
           </div>
-          : <SignIn /> }
-        
+          : <div style={{ 'text-align': 'center'}}>{boardspassed}</div> }
       </div>
     );
   }
