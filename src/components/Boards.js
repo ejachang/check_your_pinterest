@@ -62,8 +62,6 @@ class Boards extends Component {
   }
 }
 
-// export default Boards;
-//turning state to props on the react comp
 const mapStateToProps = state => {
   return { defaultboards: state.defaultboards };
 };
