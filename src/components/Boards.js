@@ -52,7 +52,7 @@ class Boards extends Component {
                     key={boarddata[idx]}/>
                   : null;
               })
-              : <div style={{'text-align': 'center'}}>{allboards}</div>
+              : <div style={{'textAlign': 'center'}}>{allboards}</div>
             }
              
           </div>

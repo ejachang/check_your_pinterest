@@ -60,13 +60,13 @@ class App extends Component {
         {user ? 
           firstname ?
             <Profile firstname={firstname} /> 
-            : <div style={{ 'text-align': 'center'}}>Page is loading</div>
+            : <div style={{ 'textAlign': 'center'}}>Page is loading</div>
           : <SignIn />}
         { defaultboards.data !== null ? 
           <div>
             <Boards defaultboards={boardspassed}/> 
           </div>
-          : <div style={{ 'text-align': 'center'}}>{boardspassed}</div> }
+          : <div style={{ 'textAlign': 'center'}}>{boardspassed}</div> }
       </div>
     );
   }
