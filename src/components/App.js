@@ -8,19 +8,17 @@ import { boardsData } from '../actions/boards_actions';
 
 import '../style.css';
 import Header from './Header';
-import Aggregate from './Aggregate';
 import SignIn from './SignIn';
 import Profile from './Profile';
 import Boards from './Boards';
-import Pins from './Pins';
 
 class App extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     user: false
-  //   };
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: false
+    };
+  }
   componentDidMount() {
     let parsed = queryString.parse(window.location.search);
     const { access_token } = parsed;
@@ -58,7 +56,6 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <Aggregate/>
         <Header />
         {user ? 
           firstname ?

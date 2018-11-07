@@ -9,6 +9,15 @@ Currently uses google reverse image search to help find leads to the original po
 ## Tech stack
 ### Front End
 * React-Redux
-* 
+* Dependencies
+  * Fetch API
+  * query-string
 
+## Back End
+* Node/Express
+* OAuth
 
+## To Be Added
+* Postgres - Database
+* Redis - caching
+* React-Router - to create a Single Page App
