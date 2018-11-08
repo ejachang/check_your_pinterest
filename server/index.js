@@ -48,12 +48,20 @@ app.get('/callback', function(req, res) {
       client_secret: process.env.APP_SECRET
     },
     headers: {
-      'Authorization': 'Basic ' + (new Buffer(
+      'Authorization': 'Basic ' + (Buffer.from(
         process.env.APP_ID + ':' + process.env.APP_SECRET
       ).toString('base64'))
     },
     json: true
   };
+  request.post(authOptions, function(error, response, body) {
+    // eslint-disable-next-line
+    let access_token = body.access_token
+    let uri = process.env.FRONTEND_URI || 'http://localhost:3000';  
+    
+    // eslint-disable-next-line
+    res.redirect(uri + '?access_token=' + access_token)
+  });
 });
 
 app.get('/boards/:board', function(req, res) {
